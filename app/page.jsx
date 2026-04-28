@@ -1,38 +1,17 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Heart, 
-  Calendar, 
-  MapPin, 
-  Music, 
-  Pause, 
-  Play, 
-  Send, 
-  Copy, 
-  Check, 
-  Clock, 
-  Users,
-  Sparkles,
-  Camera,
-  Gift,
-  Info,
-  ChevronRight,
-  Share2,
-  BookOpen,
-  Volume2,
-  Shirt,
-  PenTool
+  Heart, Calendar, MapPin, Music, Pause, Play, Send, Copy, 
+  Check, Clock, Users, Sparkles, Camera, Gift, Info, 
+  ChevronRight, Share2, BookOpen, Volume2, Shirt, PenTool
 } from 'lucide-react';
+
+// SEMUA IMPORT FIREBASE HARUS DI ATAS
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'firebase/auth';
-import { 
-  getFirestore, 
-  collection, 
-  addDoc, 
-  onSnapshot, 
-  query, 
-  serverTimestamp 
-} from 'firebase/firestore';
+import { getFirestore, collection, addDoc, onSnapshot, query, serverTimestamp } from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 
 /**
@@ -41,6 +20,7 @@ import { getAnalytics } from "firebase/analytics";
 const apiKey = "AIzaSyAsKDzQjeioy-Nn9kulKYuHFqI7j2mIy90"; 
 const appId = 'wedding-maroon-full-v1';
 
+// KONFIGURASI FIREBASE YANG RAPI (Tidak dipotong/JSON.parse)
 const firebaseConfig = {
   apiKey: "AIzaSyCR2t8z8hVf_ybJYBhQEDmhfOhWOGBtjCs",
   authDomain: "undangan-alul-dewi-16048.firebaseapp.com",
@@ -55,7 +35,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-// Inisialisasi Analytics jika di lingkungan browser
+
+// Inisialisasi Analytics jika berjalan di browser client
 if (typeof window !== "undefined") {
   getAnalytics(app);
 }
@@ -69,7 +50,6 @@ const QRIS_IMG = "https://res.cloudinary.com/dgtz4aiww/image/upload/v1777282429/
 
 /**
  * PANGGILAN API GEMINI (Text Generation)
- * Menggunakan model 1.5-flash untuk stabilitas
  */
 const callGemini = async (prompt, retryCount = 0) => {
   if (!apiKey) return "";
@@ -131,6 +111,9 @@ const playTTS = async (text) => {
   }
 };
 
+/**
+ * KOMPONEN UTAMA
+ */
 export default function Page() {
   const [user, setUser] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
