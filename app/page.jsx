@@ -37,9 +37,29 @@ import {
 /**
  * KONFIGURASI & INISIALISASI
  */
-const apiKey = ""; // API Key Gemini (Otomatis dari environment)
+const apiKey = "AIzaSyAsKDzQjeioy-Nn9kulKYuHFqI7j2mIy90"; // API Key Gemini (Otomatis dari environment)
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'wedding-maroon-full-v1';
-const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCR2t8z8hVf_ybJYBhQEDmhfOhWOGBtjCs",
+  authDomain: "undangan-alul-dewi-16048.firebaseapp.com",
+  projectId: "undangan-alul-dewi-16048",
+  storageBucket: "undangan-alul-dewi-16048.firebasestorage.app",
+  messagingSenderId: "897721810756",
+  appId: "1:897721810756:web:5d6f65d63f9452125de111",
+  measurementId: "G-S59C76MV10"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);}');
 
 // Inisialisasi Firebase (Hanya jika config tersedia)
 const app = firebaseConfig.apiKey ? initializeApp(firebaseConfig) : null;
