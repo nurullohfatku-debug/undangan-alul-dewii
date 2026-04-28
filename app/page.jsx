@@ -144,7 +144,7 @@ const playTTS = async (text) => {
 /**
  * KOMPONEN UTAMA
  */
-export default function App() {
+export default function Page() {
   const [user, setUser] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showInvitation, setShowInvitation] = useState(false);
